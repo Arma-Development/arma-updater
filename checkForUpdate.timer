@@ -1,0 +1,9 @@
+[Unit]
+Description=Run checkForUpdateArma daily at 12 PM CST
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

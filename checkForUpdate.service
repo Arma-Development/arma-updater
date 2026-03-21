@@ -1,0 +1,13 @@
+[Unit]
+Description=Runs checkForUpdateArma
+
+[Service]
+Type=oneshot
+User=armaServer
+Group=sudo
+ExecStart=/home/armaServer/projects/arma-updater/run.sh
+RuntimeMaxSec=10min
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
