@@ -105,7 +105,7 @@ def sendWarning():
 
 def main():
     try:
-        subproccess(["mkdir", "-p", str(GAME_PATH)])
+        subprocess(["mkdir", "-p", str(GAME_PATH)])
         logging.info("Running CHECK FOR UPDATE ARMA")
         installedBuildId = getInstalledBuildId()
         currentBuildId = getCurrentBuildId()
