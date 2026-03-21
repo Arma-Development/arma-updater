@@ -104,12 +104,6 @@ def sendWarning():
         requests.post(webhook, json=data)
 
 def main():
-    # Get the string from stdout
-    steam_path = result.stdout.strip()
-    if not steam_path:
-        logging.error("Steamcmd not found")
-        sys.exit(1)
-
     try:
         subproccess(["mkdir", "-p", str(GAME_PATH)])
         logging.info("Running CHECK FOR UPDATE ARMA")
