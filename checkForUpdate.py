@@ -104,13 +104,6 @@ def sendWarning():
         requests.post(webhook, json=data)
 
 def main():
-    result = subprocess.run(
-        ["which", "steamcmd"], 
-        capture_output=True, 
-        text=True, 
-        check=True
-    )
-    
     # Get the string from stdout
     steam_path = result.stdout.strip()
     if not steam_path:
