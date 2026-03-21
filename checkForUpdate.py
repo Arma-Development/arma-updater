@@ -67,8 +67,8 @@ def updateArma():
     # update
     # log update
     logging.info(f"\tUpdating arma")
-    subprocess(["steamcmd", "+exit"])
-    subprocess(["sudo", "-i", "-u", "armaServer",
+    subprocess.run(["steamcmd", "+exit"])
+    subprocess.run(["sudo", "-i", "-u", "armaServer",
         "steamcmd", "+force_install_dir", str(GAME_PATH), "+login", "anonymous",
         "+app_update", "1874900", "validate", "+exit"])
 
@@ -105,7 +105,7 @@ def sendWarning():
 
 def main():
     try:
-        subprocess(["mkdir", "-p", str(GAME_PATH)])
+        subprocess.run(["mkdir", "-p", str(GAME_PATH)])
         logging.info("Running CHECK FOR UPDATE ARMA")
         installedBuildId = getInstalledBuildId()
         currentBuildId = getCurrentBuildId()
