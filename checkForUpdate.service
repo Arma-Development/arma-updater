@@ -3,9 +3,9 @@ Description=Runs checkForUpdateArma
 
 [Service]
 Type=oneshot
-User=armaServer
+User=game-server
 Group=sudo
-ExecStart=/home/armaServer/projects/arma-updater/run.sh
+ExecStart=/home/game-server/projects/arma-updater/run.sh
 RuntimeMaxSec=10min
 KillMode=control-group
 
