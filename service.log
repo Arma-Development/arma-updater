@@ -1,6 +1,0 @@
-2026-03-21 06:44:41,334 ERROR: 	Script failed: 'module' object is not callable
-2026-03-21 06:45:43,996 INFO: Running CHECK FOR UPDATE ARMA
-2026-03-21 06:45:43,997 INFO: 	Installed build ID found: 21624548
-2026-03-21 06:45:46,690 INFO: 	Current build ID from Steam: 21624548
-2026-03-21 06:45:46,690 INFO: 	Installed Build ID: 21624548, Current Build ID: 21624548, Up-to-date: True
-2026-03-21 06:45:46,690 INFO: 	No update detected

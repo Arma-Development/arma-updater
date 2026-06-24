@@ -8,7 +8,7 @@ import requests
 from datetime import datetime
 from pathlib import Path
 import vdf
-import sys
+import sys, os
 
 import faulthandler
 import signal
@@ -25,8 +25,16 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)s: %(message)s'
 )
 
+# DISCORD WEBHOOKS
+WEBHOOKS = [
+
+]
+
 
 def getInstalledBuildId() -> int:
+    if not os.path.exists(MANIFEST_PATH):
+        return "NONE"
+
     try:
         with open(MANIFEST_PATH, "r") as f:
             manifest = vdf.load(f)
@@ -67,9 +75,9 @@ def updateArma():
     # update
     # log update
     logging.info(f"\tUpdating arma")
-    subprocess.run(["steamcmd", "+exit"])
-    subprocess.run(["sudo", "-i", "-u", "armaServer",
-        "steamcmd", "+force_install_dir", str(GAME_PATH), "+login", "anonymous",
+    subprocess.run(["/usr/games/steamcmd", "+exit"])
+    subprocess.run(["sudo", "-i", "-u", "game-server",
+        "/usr/games/steamcmd", "+force_install_dir", str(GAME_PATH), "+login", "anonymous",
         "+app_update", "1874900", "validate", "+exit"])
 
     # Start all servers that were running
@@ -80,12 +88,8 @@ def updateArma():
         subprocess.run(["docker", "container", "start", server_name])
 
 def sendWarning():
-    webhooks = [
-        "https://discord.com/api/webhooks/1466452645567922277/dfNPiFiN0mf5uyNRmQbTygkEUKrs1zz9BZOcj7M4annjkEm0ak2V8AVk-FhFimHgbDTL",
-        "https://discord.com/api/webhooks/1442745220088201337/ZN1g7uDkA9y9Y7BEYcJQJJ-4wwJjUDGQJcLNe1EvHhG7U7YU2M7zDb0xbcDITJAxt4_G"
-    ]
-    message = "WARPIG2 attempted and failed to update the arma servers\n<@295726442208165889> <@673238422961258535> <@1036118715592355891>"
-    author = "WARPIG2 ARMA UPDATER"
+    message = "Server attempted and failed to update the arma servers\n<@295726442208165889> <@673238422961258535> <@1036118715592355891>"
+    author = "ARMA UPDATER"
     timestamp = datetime.now().isoformat()[0:-3] + "Z"
     data = {
         "content": None,
@@ -100,7 +104,7 @@ def sendWarning():
             }
         ]
     }
-    for webhook in webhooks:
+    for webhook in WEBHOOKS:
         requests.post(webhook, json=data)
 
 def main():
